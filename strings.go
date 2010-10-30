@@ -36,12 +36,37 @@ func StringStringsJoin(v map[string][]string, sep string, sortVals bool)(out map
   return
 }
 
+// Returns a single string created from a map[string]string, using kvsep 
+// and pairsep as the seperator betwen key/value and key/value 
+// pairs respectively.
 func StringStringJoin(v map[string]string, kvsep string, pairsep string, sortKeys bool)(out string){
   keys := StringStringMapKeys(v)
   if sortKeys { sort.SortStrings(keys) }
   for ki := range(keys) {
     if len(out) > 0 { out += pairsep }
     out += keys[ki] + kvsep + v[keys[ki]]
+  }
+  return
+}
+
+// Convert a map[string]string to a map[string][]string by copying the value
+// in the original map to the sole element of its respective list in the return.
+func StringStringToStringStrings(in map[string]string)(out map[string][]string){
+  out = make(map[string][]string)
+  for k, v := range(in) {
+    out[k] = []string{v}
+  }
+  return
+}
+
+
+// Return a copy of the map with escaped values.
+func StringStringEscape(in map[string]string, kescape, vescape func(string)(string))(out map[string]string){
+  out = map[string]string{}
+  for k,v := range(in){
+    if kescape != nil { k = kescape(k) }
+    if vescape != nil { v = vescape(v) }
+    out[k] = v
   }
   return
 }
