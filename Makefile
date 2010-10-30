@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=org.abneptis/maptools
+TARG=com.abneptis.oss/maptools
 GOFILES=strings.go\
 
 include $(GOROOT)/src/Make.pkg
