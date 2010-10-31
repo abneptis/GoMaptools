@@ -1,3 +1,9 @@
+// Map manipulation functions
+//
+// Currently focused on map[string]string  and map[string][]string,
+// maptools is a library of frequently needed utilities related to
+// maps, including escaping, stringification, and the missing Keys()
+// function.
 package maptools
 
 import "strings"
