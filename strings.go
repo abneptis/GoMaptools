@@ -67,6 +67,7 @@ func StringStringToStringStrings(in map[string]string)(out map[string][]string){
 
 
 // Return a copy of the map with escaped values.
+// The original map is unaffected.
 func StringStringEscape(in map[string]string, kescape, vescape func(string)(string))(out map[string]string){
   out = map[string]string{}
   for k,v := range(in){
